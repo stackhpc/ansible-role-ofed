@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-
+  role_name: ofed
   author: Will Szumski
   description: Installs OFED via Mellanox Repositories
 

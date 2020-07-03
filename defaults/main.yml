@@ -1,2 +1,8 @@
 ---
 # defaults file for ofed
+
+# Path to repo file
+ofed_repo_file: https://linux.mellanox.com/public/repo/mlnx_ofed/latest/rhel7.8/mellanox_mlnx_ofed.repo
+
+# Name of repository file
+ofed_repo_name: "{{ ofed_repo_file | basename }}"

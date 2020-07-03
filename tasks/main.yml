@@ -1,2 +1,41 @@
 ---
 # tasks file for ofed
+
+- name: Install the repository
+  command: yum-config-manager --add-repo {{ ofed_repo_file }}
+  args:
+    creates: /etc/yum.repos.d/{{ ofed_repo_name }}
+  become: true
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version < '8'
+
+- name: Install the repository
+  command: dnf config-manager --add-repo {{ ofed_repo_file }}
+  args:
+    creates: /etc/yum.repos.d/{{ ofed_repo_name }}
+  become: true
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version >= '8'
+
+- name: Install the GPG key
+  rpm_key:
+    key: http://www.mellanox.com/downloads/ofed/RPM-GPG-KEY-Mellanox
+  become: true
+
+- name: Install infiniband support
+  yum:
+    name: "@Infiniband Support"
+    state: present
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version < '8'
+
+- name: Install infiniband support
+  dnf:
+    name: "@Infiniband Support"
+    state: present
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version >= '8'

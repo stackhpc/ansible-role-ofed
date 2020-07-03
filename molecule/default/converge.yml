@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include ansible-role-sshd-pam-oauth2"
+    - name: "Include stackhpc.ofed"
       include_role:
-        name: ofed
+        name: stackhpc.ofed
