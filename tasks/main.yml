@@ -39,3 +39,18 @@
   when:
     - ansible_os_family == "RedHat"
     - ansible_distribution_major_version >= '8'
+
+- name: Determine which kernel version is supported
+  # Produces: 3.10.0-1127.el7.x86_64
+  shell: |-
+    set -o pipefail
+    rpm -ql kmod-mlnx-ofa_kernel | grep "/lib/modules" | awk -F "/" '{print $4}' | uniq
+  args:
+    executable: /bin/bash
+  register: supported_kernel
+  changed_when: false
+
+- name: Install supported kernel
+  package:
+    name: "kernel-{{ supported_kernel.stdout }}"
+  become: true
