@@ -28,6 +28,7 @@
   yum:
     name: "@Infiniband Support"
     state: present
+  become: true
   when:
     - ansible_os_family == "RedHat"
     - ansible_distribution_major_version < '8'
@@ -36,6 +37,7 @@
   dnf:
     name: "@Infiniband Support"
     state: present
+  become: true
   when:
     - ansible_os_family == "RedHat"
     - ansible_distribution_major_version >= '8'
