@@ -54,18 +54,21 @@
   package:
     name: "kernel-{{ supported_kernel.stdout }}"
   become: true
+  when: ofed_update_kernel | bool
 
 - name: Make grub default to supported kernel
   # NOTE: This affects config generation so put it before
   command: grub2-set-default 'CentOS Linux ({{ supported_kernel.stdout }}) {{ ansible_distribution_major_version }} (Core)'
   changed_when: false
   become: true
+  when: ofed_update_kernel | bool
 
 - name: Generate new grub-config
   command: grub2-mkconfig
   register: grub_mkconfig_result
   become: true
   changed_when: false
+  when: ofed_update_kernel | bool
 
 - name: Replace current grub config
   copy:
@@ -75,6 +78,7 @@
     content: "{{ grub_mkconfig_result.stdout }}"
     dest: "{{ item }}"
   become: true
+  when: ofed_update_kernel | bool
   register: grub_update_result
   with_items:
     - /etc/grub2.cfg
