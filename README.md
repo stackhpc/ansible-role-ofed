@@ -4,7 +4,6 @@
 Installs OFED via Mellanox Repositories
 
 # Requirements
-------------
 
 None
 
