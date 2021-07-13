@@ -1,5 +1,4 @@
 # ofed
-=========
 
 Installs OFED via Mellanox Repositories
 
