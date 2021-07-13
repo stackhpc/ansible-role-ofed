@@ -23,7 +23,6 @@ Please see `defaults/main.yml`.
 None
 
 # Example Playbook
-----------------
 
 ## Default settings
 
