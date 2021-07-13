@@ -18,7 +18,6 @@ Please see `defaults/main.yml`.
 * `ofed_target_release` Specifies the Linux distribution for the install of the OFED drivers, default is `rhel7.8`
  
 # Dependencies
-------------
 
 None
 
