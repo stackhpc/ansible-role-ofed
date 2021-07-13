@@ -8,7 +8,6 @@ Installs OFED via Mellanox Repositories
 None
 
 # Role Variables
---------------
 
 Please see `defaults/main.yml`.
 
