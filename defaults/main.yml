@@ -1,8 +1,14 @@
 ---
-# defaults file for ofed
+# defaults OFED repo
+ofed_version: latest
+ofed_target_release: rhel7.8
+ofed_repository_url: https://linux.mellanox.com/public/repo/mlnx_ofed
+
+# If true, update kernel
+ofed_update_kernel: yes
 
 # Path to repo file
-ofed_repo_file: https://linux.mellanox.com/public/repo/mlnx_ofed/latest/rhel7.8/mellanox_mlnx_ofed.repo
+ofed_repo_file: "{{ ofed_repository_url}}/{{ofed_version}}/{{ofed_target_release}}/mellanox_mlnx_ofed.repo"
 
 # Name of repository file
 ofed_repo_name: "{{ ofed_repo_file | basename }}"
