@@ -76,7 +76,8 @@
 
 - name: Replace current grub config
   copy:
-    backup: true
+    # This fails if a file doesn't exist to be backed up so set ofed_grub_backup to false
+    backup: "{{ ofed_grub_backup }}"
     # /etc/grub2.cfg -> ../boot/grub2/grub.cfg
     follow: true
     content: "{{ grub_mkconfig_result.stdout }}"

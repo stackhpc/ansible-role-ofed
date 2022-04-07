@@ -15,3 +15,6 @@ ofed_repo_name: "{{ ofed_repo_file | basename }}"
 
 # Package installation options
 ofed_nobest: false
+
+# Backup grub files?
+ofed_grub_backup: true
