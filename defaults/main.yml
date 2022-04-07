@@ -18,3 +18,8 @@ ofed_nobest: false
 
 # Backup grub files?
 ofed_grub_backup: true
+
+# Manage settings in /etc/infiniband/openib.conf
+ofed_manage_openib_conf: false
+ofed_force_mode: false
+ofed_rdma_ucm_load: true

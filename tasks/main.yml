@@ -76,7 +76,7 @@
 
 - name: Replace current grub config
   copy:
-    # This fails if a file doesn't exist to be backed up so set ofed_grub_backup to false
+    # This fails if a file doesn't exist to be backed up, so need to be able to set ofed_grub_backup to false
     backup: "{{ ofed_grub_backup }}"
     # /etc/grub2.cfg -> ../boot/grub2/grub.cfg
     follow: true
@@ -88,3 +88,21 @@
   with_items:
     - /etc/grub2.cfg
     - /etc/grub2-efi.cfg
+
+- name: Configure OpenIB
+  template:
+    src: templates/etc/infiniband/openib.conf.j2
+    dest: /etc/infiniband/openib.conf
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  notify: restart_openibd
+  when: ofed_manage_openib_conf | bool
+
+- name: Check state of OpenIB daemon
+  service:
+    name: openibd
+    state: started
+    enabled: true
+  become: true
