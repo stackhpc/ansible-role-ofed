@@ -12,3 +12,6 @@ ofed_repo_file: "{{ ofed_repository_url}}/{{ofed_version}}/{{ofed_target_release
 
 # Name of repository file
 ofed_repo_name: "{{ ofed_repo_file | basename }}"
+
+# Package installation options
+ofed_nobest: false
