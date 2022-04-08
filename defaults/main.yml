@@ -12,3 +12,14 @@ ofed_repo_file: "{{ ofed_repository_url}}/{{ofed_version}}/{{ofed_target_release
 
 # Name of repository file
 ofed_repo_name: "{{ ofed_repo_file | basename }}"
+
+# Package installation options
+ofed_nobest: false
+
+# Backup grub files?
+ofed_grub_backup: true
+
+# Manage settings in /etc/infiniband/openib.conf
+ofed_manage_openib_conf: false
+ofed_force_mode: false
+ofed_rdma_ucm_load: true
